@@ -1,4 +1,4 @@
-module git.molbulak.ru/a.itskovich/molbulak-services-golang
+module itskovich@bitbucket.org/itskovich/goava.git
 
 go 1.17
 
