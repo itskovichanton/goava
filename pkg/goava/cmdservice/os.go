@@ -1,7 +1,6 @@
 package cmdservice
 
 import (
-	"git.molbulak.ru/a.itskovich/molbulak-services-golang/pkg/core/utils"
 	"strconv"
 	"strings"
 )

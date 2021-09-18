@@ -2,7 +2,6 @@ package cmdservice
 
 import (
 	"fmt"
-	"git.molbulak.ru/a.itskovich/molbulak-services-golang/pkg/core/errs"
 	"io"
 	"os/exec"
 	"runtime"

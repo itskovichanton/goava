@@ -2,8 +2,6 @@ package cmdservice
 
 import (
 	"bufio"
-	"git.molbulak.ru/a.itskovich/molbulak-services-golang/pkg/core"
-	"git.molbulak.ru/a.itskovich/molbulak-services-golang/pkg/core/utils"
 	"os"
 	"path/filepath"
 )

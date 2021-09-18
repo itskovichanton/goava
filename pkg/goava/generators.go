@@ -3,8 +3,6 @@ package goava
 import (
 	"encoding/base64"
 	"fmt"
-	"git.molbulak.ru/a.itskovich/molbulak-services-golang/pkg/core/errs"
-	"git.molbulak.ru/a.itskovich/molbulak-services-golang/pkg/core/utils"
 	"github.com/google/uuid"
 	"strings"
 	"sync/atomic"

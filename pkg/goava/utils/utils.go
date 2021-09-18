@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
-	"git.molbulak.ru/a.itskovich/molbulak-services-golang/pkg/core/errs"
 	"github.com/c2h5oh/datasize"
 	"github.com/lingdor/stackerror"
 	"github.com/spf13/cast"
