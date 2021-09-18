@@ -1,6 +1,8 @@
 package cmdservice
 
 import (
+	"bitbucket.org/itskovich/goava/pkg/goava/errs"
+	"bitbucket.org/itskovich/goava/pkg/goava/utils"
 	"fmt"
 	"io"
 	"os/exec"
