@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bitbucket.org/itskovich/goava/pkg/goava/errs"
+	"bufio"
 	"crypto/md5"
 	"crypto/sha256"
 	"encoding/hex"
@@ -379,4 +380,40 @@ func GetFileSize(fileName string) uint64 {
 		return 0
 	}
 	return uint64(fi.Size())
+}
+
+func WriteToFile(filename string, writer func(w *bufio.Writer) error) (*os.File, error) {
+
+	f, err := os.Create(filename)
+
+	if err != nil {
+		return nil, err
+	}
+
+	w := bufio.NewWriter(f)
+	err = writer(w)
+
+	if err != nil {
+		return nil, err
+	}
+
+	err = w.Flush()
+	if err != nil {
+		return nil, err
+	}
+
+	return f, f.Close()
+
+}
+
+func CloseAndRemove(f *os.File) error {
+	err := f.Close()
+	if err != nil {
+		println(err.Error())
+	}
+	err = os.Remove(f.Name())
+	if err != nil {
+		println(err.Error())
+	}
+	return err
 }
