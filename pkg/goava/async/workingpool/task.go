@@ -17,6 +17,6 @@ func NewTask(f func(interface{}) error, data interface{}) *Task {
 }
 
 func process(workerID int, task *Task) {
-	fmt.Printf("Worker %d processes task %v\n", workerID, task.Data)
+	//fmt.printf("Worker %d processes task %v\n", workerID, task.Data)
 	task.Err = task.f(task.Data)
 }

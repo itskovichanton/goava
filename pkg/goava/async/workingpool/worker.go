@@ -23,7 +23,7 @@ func NewWorker(channel chan *Task, ID int) *Worker {
 
 // Start starts the worker
 func (wr *Worker) Start(wg *sync.WaitGroup) {
-	fmt.Printf("Starting worker %d\n", wr.ID)
+	//fmt.printf("Starting worker %d\n", wr.ID)
 
 	wg.Add(1)
 	go func() {
@@ -36,7 +36,7 @@ func (wr *Worker) Start(wg *sync.WaitGroup) {
 
 // StartBackground starts the worker in background waiting
 func (wr *Worker) StartBackground() {
-	fmt.Printf("Starting worker %d\n", wr.ID)
+	//fmt.printf("Starting worker %d\n", wr.ID)
 
 	for {
 		select {
@@ -50,7 +50,7 @@ func (wr *Worker) StartBackground() {
 
 // Stop quits the worker
 func (wr *Worker) Stop() {
-	fmt.Printf("Closing worker %d\n", wr.ID)
+	//fmt.printf("Closing worker %d\n", wr.ID)
 	go func() {
 		wr.quit <- true
 	}()

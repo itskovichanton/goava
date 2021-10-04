@@ -52,7 +52,7 @@ func (p *Pool) AddTask(task *Task) {
 func (p *Pool) RunBackground() {
 	go func() {
 		for {
-			fmt.Print("⌛ Waiting for tasks to come in ...\n")
+			//fmt.print("⌛ Waiting for tasks to come in ...\n")
 			time.Sleep(10 * time.Second)
 		}
 	}()
