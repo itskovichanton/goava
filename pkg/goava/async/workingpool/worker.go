@@ -1,7 +1,6 @@
 package workingpool
 
 import (
-	"fmt"
 	"sync"
 )
 

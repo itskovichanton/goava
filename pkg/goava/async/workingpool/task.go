@@ -1,9 +1,5 @@
 package workingpool
 
-import (
-	"fmt"
-)
-
 // Task encapsulates a work item that should go in a work
 type Task struct {
 	Err  error
