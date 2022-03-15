@@ -417,3 +417,17 @@ func CloseAndRemove(f *os.File) error {
 	}
 	return err
 }
+
+func GetFirstElement(a []interface{}) interface{} {
+	if a == nil || len(a) == 0 {
+		return nil
+	}
+	return a[0]
+}
+
+func GetFirstElementStr(a []string) string {
+	if a == nil || len(a) == 0 {
+		return ""
+	}
+	return a[0]
+}
