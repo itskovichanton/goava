@@ -431,3 +431,32 @@ func GetFirstElementStr(a []string) string {
 	}
 	return a[0]
 }
+
+func IterateFields(v interface{}, action func(fieldName string, value interface{}, f reflect.Value) error) error {
+	return iterateFields(nil, v, "", action)
+}
+
+func iterateFields(root, v interface{}, fieldName string, action func(fieldName string, value interface{}, f reflect.Value) error) error {
+	f := reflect.Indirect(reflect.ValueOf(v))
+	if f.Kind() == reflect.Ptr {
+		f = f.Elem()
+	}
+	if !f.IsValid() {
+		return nil
+	}
+	if f.Kind() == reflect.Slice {
+		for k := 0; k < f.Len(); k++ {
+			iterateFields(v, f.Index(k).Interface(), fieldName, action)
+		}
+	} else if f.Kind() == reflect.Struct {
+		for k := 0; k < f.NumField(); k++ {
+			iterateFields(v, f.Field(k).Interface(), f.Type().Field(k).Name, action)
+		}
+	} else {
+		err := action(fieldName, f.Interface(), reflect.ValueOf(root).Elem().FieldByName(fieldName))
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
