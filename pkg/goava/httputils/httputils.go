@@ -53,7 +53,11 @@ func ListenAndServe(srv *http.Server, tls bool, protocol, network, certFile, key
 }
 
 func BasicAuth(r *http.Request, username, password string) {
-	r.Header.Add("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(username+":"+password)))
+	r.Header.Add("Authorization", CalcBasicAuth(username, password))
+}
+
+func CalcBasicAuth(username, password string) string {
+	return "Basic " + base64.StdEncoding.EncodeToString([]byte(username+":"+password))
 }
 
 func ParseBasicAuth(auth string) (username, password string, ok bool) {

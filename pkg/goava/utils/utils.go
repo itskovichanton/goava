@@ -21,7 +21,9 @@ import (
 	"path/filepath"
 	"reflect"
 	"regexp"
+	"runtime"
 	"strings"
+	"text/template"
 	"time"
 )
 
@@ -83,6 +85,14 @@ func GetByRoute(m map[string]interface{}, route ...string) interface{} {
 		}
 	}
 	return m
+}
+
+func ChopOffStringBounded(s string, rightOffset, lengthRemain int) string {
+	firstCharIndex := len(s) - rightOffset
+	if firstCharIndex < 0 {
+		firstCharIndex = 0
+	}
+	return ChopOffString(s[firstCharIndex:], lengthRemain)
 }
 
 func ChopOffString(s string, lengthRemain int) string {
@@ -459,4 +469,64 @@ func iterateFields(root, v interface{}, fieldName string, action func(fieldName 
 		}
 	}
 	return nil
+}
+
+func FirstEntryStr(a map[string]interface{}) (string, interface{}) {
+	for k, v := range a {
+		return k, v
+	}
+	return "", nil
+}
+
+func FirstEntry(a map[interface{}]interface{}) (interface{}, interface{}) {
+	for k, v := range a {
+		return k, v
+	}
+	return nil, nil
+}
+
+type FormatTp struct {
+	tp *template.Template
+}
+
+func (f FormatTp) Template() *template.Template {
+	return f.tp
+}
+
+// Exec  Pass in map Fill the predetermined template
+func (f FormatTp) Exec(args interface{}) string {
+	s := new(strings.Builder)
+	f.tp.Execute(s, args)
+	return s.String()
+}
+
+/*
+	Format  Custom naming format, Strictly in accordance with  {{.CUSTOMNAME}}  As a predetermined parameter , Don't write anything else template grammar
+
+usage:
+
+	s = Format("{{.name}} hello.").Exec(map[string]interface{}{
+	    "name": "superpig",
+	}) // s: superpig hello.
+*/
+func Format(fmt string) FormatTp {
+	temp, _ := template.New("").Parse(fmt)
+	return FormatTp{tp: temp}
+}
+
+func Concat[T any](first []T, second []T) []T {
+	n := len(first)
+	return append(first[:n:n], second...)
+}
+
+func MapSlice[A, B any](a []A, mapper func(x A) B) []B {
+	var r []B
+	for _, x := range a {
+		r = append(r, mapper(x))
+	}
+	return r
+}
+
+func IsWindows() bool {
+	return strings.EqualFold(runtime.GOOS, "windows")
 }
