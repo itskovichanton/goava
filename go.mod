@@ -1,4 +1,4 @@
-module bitbucket.org/itskovich/goava
+module github.com/itskovichanton/goava
 
 go 1.19
 

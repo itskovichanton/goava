@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"bitbucket.org/itskovich/goava/pkg/goava/errs"
 	"bufio"
 	"crypto/md5"
 	"crypto/sha256"
@@ -10,6 +9,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"github.com/c2h5oh/datasize"
+	"github.com/itskovichanton/goava/pkg/goava/errs"
 	"github.com/lingdor/stackerror"
 	"github.com/spf13/cast"
 	"golang.org/x/text/encoding/charmap"

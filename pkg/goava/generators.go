@@ -1,11 +1,11 @@
 package goava
 
 import (
-	"bitbucket.org/itskovich/goava/pkg/goava/errs"
-	"bitbucket.org/itskovich/goava/pkg/goava/utils"
 	"encoding/base64"
 	"fmt"
 	"github.com/google/uuid"
+	"github.com/itskovichanton/goava/pkg/goava/errs"
+	"github.com/itskovichanton/goava/pkg/goava/utils"
 	"strings"
 	"sync/atomic"
 	"time"
