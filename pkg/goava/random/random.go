@@ -1,4 +1,4 @@
-package goava
+package random
 
 import (
 	"math/rand"
