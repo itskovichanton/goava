@@ -3,7 +3,6 @@ package httputils
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/labstack/echo/v4"
 	"github.com/spf13/cast"
 	"io"
 	"mime/multipart"
@@ -99,11 +98,6 @@ func GetLocalIP() string {
 		}
 	}
 	return ""
-}
-
-func GETPOST(e *echo.Echo, path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route {
-	e.Add(http.MethodGet, path, h, m...)
-	return e.Add(http.MethodPost, path, h, m...)
 }
 
 func NewHttpRequest(method string, callUrl string, params map[string]interface{}) (*http.Request, error) {
